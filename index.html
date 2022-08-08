@@ -120,9 +120,9 @@
 
 /* Button 2 */
 .btn-2 {
-	background: #cb4e4e;
+	background: #4593e3;
 	color: #fff;
-	box-shadow: 0 6px #ab3c3c;
+	box-shadow: 0 6px #226fbe;
 	-webkit-transition: none;
 	-moz-transition: none;
 	transition: none;
@@ -134,12 +134,12 @@
 }
 
 .btn-2a:hover {
-	box-shadow: 0 4px #ab3c3c;
+	box-shadow: 0 4px #226fbe;
 	top: 2px;
 }
 
 .btn-2a:active {
-	box-shadow: 0 0 #ab3c3c;
+	box-shadow: 0 0 #226fbe;
 	top: 6px;
 }
 
@@ -152,7 +152,7 @@
         <h1>Brad's Recipe Spinner</h1>
         <h2 class="recipe-name" id="recipe-name">--</h2>
       </div>
-      <button id="main" class="btn btn-2 btn-2a">Make your damn meal plan</button>
+      <button id="main" class="btn btn-2 btn-2a">Refresh meal ideas</button>
   </div>
   <script>
       let vh = window.innerHeight * 0.01;
@@ -173,11 +173,28 @@
           {
               name: "Chili"
           },
+          {
+              name: "Gochujang Shrimp and Green Beans"
+          },
+          {
+              name: "Tortilla Soup"
+          },
+          {
+              name: "Avgolemono"
+          },
       ];
       const button = document.getElementById("main");
       const recipeDisplay = document.getElementById("recipe-name");
       button.addEventListener("click", () => {
-          recipeDisplay.innerText = random(recipes).name
+          const randomRecipe = () => random(recipes).name
+          const recursiveRecipe = (curr) => {
+              let newRecipe = randomRecipe();
+              if (newRecipe === curr) {
+                  newRecipe = recursiveRecipe();
+              }
+              return newRecipe;
+          }
+          recipeDisplay.innerText = recursiveRecipe(recipeDisplay.innerText);
       })
   </script>
 </body>
