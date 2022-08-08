@@ -64,9 +64,13 @@
   <link href="images/favicon.png" rel="shortcut icon" type="image/x-icon">
   <link href="images/webclip.png" rel="apple-touch-icon">
   <style>
-      body {
+      /* body {
         height: 100vh;
         margin: 0;
+      } */
+      body {
+        height: 100vh; /* Fallback for browsers that do not support Custom Properties */
+  height: calc(var(--vh, 1vh) * 100);
       }
       .container {
           height: 100%;
@@ -80,6 +84,66 @@
       .recipe-name {
           text-align: center;
       }
+
+/* General button style (reset) */
+.btn {
+	border: none;
+	font-family: inherit;
+	font-size: inherit;
+	color: inherit;
+	background: none;
+	cursor: pointer;
+	padding: 25px 80px;
+	display: inline-block;
+	margin: 15px 30px;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	font-weight: 700;
+	outline: none;
+	position: relative;
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	transition: all 0.3s;
+}
+
+.btn:after {
+	content: '';
+	position: absolute;
+	z-index: -1;
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	transition: all 0.3s;
+}
+
+/* Pseudo elements for icons */
+
+
+/* Button 2 */
+.btn-2 {
+	background: #cb4e4e;
+	color: #fff;
+	box-shadow: 0 6px #ab3c3c;
+	-webkit-transition: none;
+	-moz-transition: none;
+	transition: none;
+}
+
+/* Button 2a */
+.btn-2a {
+	border-radius: 0 0 5px 5px;
+}
+
+.btn-2a:hover {
+	box-shadow: 0 4px #ab3c3c;
+	top: 2px;
+}
+
+.btn-2a:active {
+	box-shadow: 0 0 #ab3c3c;
+	top: 6px;
+}
+
+
   </style>
 </head>
 <body>
@@ -88,9 +152,13 @@
         <h1>Brad's Recipe Spinner</h1>
         <h2 class="recipe-name" id="recipe-name">--</h2>
       </div>
-      <button id="main">Make your damn meal plan</button>
+      <button id="main" class="btn btn-2 btn-2a">Make your damn meal plan</button>
   </div>
   <script>
+      let vh = window.innerHeight * 0.01;
+      document.documentElement.style.setProperty('--vh', `${vh}px`);
+
+
       const random = (arr) => arr[Math.floor((Math.random()*arr.length))]
       const recipes = [
           {
