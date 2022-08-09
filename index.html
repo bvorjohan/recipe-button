@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html >
+<html>
 
 <head>
     <meta charset="utf-8">
@@ -77,7 +77,7 @@
 
         /* General button style (reset) */
         .btn {
-            touch-action: manipulation; 
+            touch-action: manipulation;
             border: none;
             font-family: inherit;
             font-size: inherit;
@@ -166,7 +166,9 @@
 <body>
     <div class="container">
         <div>
-            <div><div></div><a id="current-user-picker"></a></div>
+            <div>
+                <div></div><a id="current-user-picker"></a>
+            </div>
             <h1>Brad's Recipe Spinner</h1>
             <h2 class="recipe-name" id="recipe-name">--</h2>
         </div>
@@ -187,8 +189,14 @@
 
     </div>
     <script>
-        let vh = window.innerHeight * 0.01;
-        document.documentElement.style.setProperty('--vh', `${vh}px`);
+        const resizeFunc = () => {
+            let vh = window.innerHeight * 0.01;
+            document.documentElement.style.setProperty('--vh', `${vh}px`);
+        }
+        window.addEventListener('resize', () => {
+            resizeFunc()
+        });
+        resizeFunc()
         const setCookie = (name, value, days) => {
             var expires = "";
             if (days) {
@@ -214,14 +222,14 @@
 
         const modal = document.getElementById("myModal");
         let user
-        console.log({user})
+        console.log({ user })
         try {
             console.log("trying user")
             user = getCookie('user');
-            console.log({user})
+            console.log({ user })
 
         } catch (e) {
-            console.log({e})
+            console.log({ e })
         }
 
         const currentUserPicker = document.getElementById("current-user-picker");
@@ -231,10 +239,10 @@
         })
 
         const userSelectButtons = document.getElementById("user-select-buttons").childNodes;
-        userSelectButtons.forEach(item => item.addEventListener("click",(event) => {
+        userSelectButtons.forEach(item => item.addEventListener("click", (event) => {
             user = event.target.innerText;
             currentUserPicker.innerText = user;
-            setCookie("user",user);
+            setCookie("user", user);
             modal.style.display = "none";
         }))
 
@@ -248,85 +256,85 @@
         const random = (arr) => arr[Math.floor((Math.random() * arr.length))]
         const recipeObj = {
             Anna: [
-            {
-                name: "Chicken and Rice Casserole"
-            },
-            {
-                name: "Burmese Chicken"
-            },
-            {
-                name: "Enchiladas"
-            },
-            {
-                name: "Chili"
-            },
-            {
-                name: "Gochujang Shrimp and Green Beans"
-            },
-            {
-                name: "Tortilla Soup"
-            },
-            {
-                name: "Avgolemono",
-                href: undefined,
-            },
-            {
-                name: "Brad Spaghetti"
-            },
-            {
-                name: "Turkey Meatballs w/ red sauce"
-            },
-            {
-                name: "Chicken Meatballs w/ Tzatziki"
-            },
-            {
-                name: "Chicken Marsala"
-            },
-            {
-                name: "Lemon Chicken (or other Seared Chicken)",
-                href: "https://cooking.nytimes.com/recipes/1019909-weeknight-lemon-chicken-breasts-with-herbs",
-            },
-            {
-                name: "Black Pepper Beef and Cabbage Stir-Fry",
-                href: "https://cooking.nytimes.com/recipes/1020506-black-pepper-beef-and-cabbage-stir-fry",
-            },
-            {
-                name: "Anna's Black Beans",
-                href: undefined,
-            },
-            {
-                name: "Anna's White Beans",
-                href: undefined,
-            },
-            {
-                name: "Kuku",
-                href: undefined,
-            },
-            {
-                name: "Curry",
-                href: undefined,
-            },
-            {
-                name: "Polenta w/ Veggies",
-                href: undefined,
-            },
-        ],
-        Caroline: [
-            {
-                name: "Something Malaysian"
-            },
-            {
-                name: "Something Singaporean"
-            },
-        ],
-        Gagan: [
-            {
-                name: "Coke Zero"
-            },
-            {
-                name: "Takeout"
-            },
-        ]
+                {
+                    name: "Chicken and Rice Casserole"
+                },
+                {
+                    name: "Burmese Chicken"
+                },
+                {
+                    name: "Enchiladas"
+                },
+                {
+                    name: "Chili"
+                },
+                {
+                    name: "Gochujang Shrimp and Green Beans"
+                },
+                {
+                    name: "Tortilla Soup"
+                },
+                {
+                    name: "Avgolemono",
+                    href: undefined,
+                },
+                {
+                    name: "Brad Spaghetti"
+                },
+                {
+                    name: "Turkey Meatballs w/ red sauce"
+                },
+                {
+                    name: "Chicken Meatballs w/ Tzatziki"
+                },
+                {
+                    name: "Chicken Marsala"
+                },
+                {
+                    name: "Lemon Chicken (or other Seared Chicken)",
+                    href: "https://cooking.nytimes.com/recipes/1019909-weeknight-lemon-chicken-breasts-with-herbs",
+                },
+                {
+                    name: "Black Pepper Beef and Cabbage Stir-Fry",
+                    href: "https://cooking.nytimes.com/recipes/1020506-black-pepper-beef-and-cabbage-stir-fry",
+                },
+                {
+                    name: "Anna's Black Beans",
+                    href: undefined,
+                },
+                {
+                    name: "Anna's White Beans",
+                    href: undefined,
+                },
+                {
+                    name: "Kuku",
+                    href: undefined,
+                },
+                {
+                    name: "Curry",
+                    href: undefined,
+                },
+                {
+                    name: "Polenta w/ Veggies",
+                    href: undefined,
+                },
+            ],
+            Caroline: [
+                {
+                    name: "Something Malaysian"
+                },
+                {
+                    name: "Something Singaporean"
+                },
+            ],
+            Gagan: [
+                {
+                    name: "Coke Zero"
+                },
+                {
+                    name: "Takeout"
+                },
+            ]
         }
         const recipes = (name) => recipeObj[name];
         const button = document.getElementById("main");
