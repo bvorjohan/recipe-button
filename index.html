@@ -188,24 +188,6 @@
     <script>
         let vh = window.innerHeight * 0.01;
         document.documentElement.style.setProperty('--vh', `${vh}px`);
-        const modal = document.getElementById("myModal");
-        let user
-        console.log({user})
-        try {
-            console.log("trying user")
-            user = getCookie('user');
-            console.log({user})
-
-        } catch (e) {
-            console.log({e})
-        }
-
-        const currentUserPicker = document.getElementById("current-user-picker");
-        currentUserPicker.addEventListener("click", () => {
-            eraseCookie("user");
-            modal.style.display = "block";
-        })
-
         const setCookie = (name, value, days) => {
             var expires = "";
             if (days) {
@@ -228,6 +210,24 @@
         const eraseCookie = (name) => {
             document.cookie = name + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
         }
+        
+        const modal = document.getElementById("myModal");
+        let user
+        console.log({user})
+        try {
+            console.log("trying user")
+            user = getCookie('user');
+            console.log({user})
+
+        } catch (e) {
+            console.log({e})
+        }
+
+        const currentUserPicker = document.getElementById("current-user-picker");
+        currentUserPicker.addEventListener("click", () => {
+            eraseCookie("user");
+            modal.style.display = "block";
+        })
 
         const userSelectButtons = document.getElementById("user-select-buttons").childNodes;
         userSelectButtons.forEach(item => item.addEventListener("click",(event) => {
